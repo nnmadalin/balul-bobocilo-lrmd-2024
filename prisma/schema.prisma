@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model codes {
+  id       Int       @id @default(autoincrement())
+  code     String
+  isUsed   Boolean @default(false)
+  whenUsed DateTime?
+}
+
+model teams {
+  id    Int    @id @default(autoincrement())
+  name  String
+  votes Int  @default(0)
+}
+
+model activeVote{
+  id Int @id @default(autoincrement())
+  isActive Boolean @default(true)
+}
